@@ -1,5 +1,5 @@
 // Task 1
-// Initialize inventory with product objects
+// Create an Inventory Array of Product Objects
 const inventory = [
     { name: 'Espresso', price: 3, quantity: 10 },
     { name: 'Latte', price: 4, quantity: 5 },
@@ -10,3 +10,7 @@ const inventory = [
     { name: 'Red Eye', price: 5, quantity: 7 },
     { name: 'Irish', price: 4, quantity: 5 }
     ];
+
+// Task 2
+// Create an Orders Array of Order Objects
+const orders = [];
