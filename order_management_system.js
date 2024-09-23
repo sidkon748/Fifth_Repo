@@ -13,15 +13,30 @@ const inventory = [
 
 // Task 2
 // Create an Orders Array of Order Objects
-const orders = [];
-orders.push({
+const orders = [{ // Orders array for customerNmae, items, and status
     customerName: 'Karl Maverick',
     items: [
       { name: 'Americano', quantity: 5 },
       { name: 'Irish', quantity: 2 }
     ],
     status: 'Pending'
-  });
+  },
+  {
+    customerName: 'Jason Menendez',
+    items: [
+      { name: 'Ristretto', quantity: 4 },
+      { name: 'Irish', quantity: 3 }
+    ],
+    status: 'Pending'
+  }, {
+    customerName: 'Jason Menendez',
+    items: [
+      { name: 'Ristretto', quantity: 4 },
+      { name: 'Irish', quantity: 3 }
+    ],
+    status: 'Complete'
+  }];
+
 
 // Task 3
 // Create a Function to Place an Order
@@ -32,7 +47,7 @@ function placeOrder(customerName, purchase) {
         const product = inventory.find(prod => prod.name === item.name);
         if (!product || product.quantity < item.quantity) {
             console.log(`${item.name} not available`);
-             return;// Do not place the order
+             return;// No order
         }
     }
 
@@ -40,10 +55,10 @@ function placeOrder(customerName, purchase) {
     for (let i = 0; i < purchase.length; i++) {
         const item = purchase[i];
         const product = inventory.find(prod => prod.name === item.name);
-        product.stock -= item.quantity; // Update stock directly
+        product.stock -= item.quantity; // Update stock 
     }
 
-    // Create and store the new order
+    // Record the new order
     const newOrder = {
         customerName: customerName,
         items: purchase,
@@ -51,7 +66,7 @@ function placeOrder(customerName, purchase) {
     };
     orders.push(newOrder);
 
-    console.log(`Order placed successfully for ${customerName}:`, newOrder);
+    console.log(`Order placed successfully for ${customerName}:`, newOrder); // Log successful order
 }
 
 // Example usage
@@ -87,3 +102,13 @@ function completeOrder(customerName){
 
 // Task 6
 // Create a Function to Mark an Order as Completed
+function checkPendingOrders(orders){
+    orders.forEach(order => {
+        if (order.status === "Pending") {
+            console.log(`Customer Name: ${customerName}`);
+            console.log(`items: ${items}`);
+            console.log(`status: Pending`);
+        }
+    });
+}
+checkPendingOrders(orders);
