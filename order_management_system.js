@@ -17,8 +17,8 @@ const orders = [];
 orders.push({
     customerName: 'Karl Maverick',
     items: [
-      { productName: 'Americano', quantity: 5 },
-      { productName: 'Irish', quantity: 2 }
+      { name: 'Americano', quantity: 5 },
+      { name: 'Irish', quantity: 2 }
     ],
     status: 'Pending'
   });
@@ -45,7 +45,7 @@ function placeOrder(customerName, purchase) {
 
     // Create and store the new order
     const newOrder = {
-        customer: customerName,
+        customerName: customerName,
         items: purchase,
         status: "Pending"
     };
@@ -55,17 +55,35 @@ function placeOrder(customerName, purchase) {
 }
 
 // Example usage
-placeOrder("John Doe", [{ name: "Irish", quantity: 3 },{ name: "Latte", quantity: 5 },{ name: "Ristretto", quantity: 4 }]);
+placeOrder("Connor Manley", [{ name: "Irish", quantity: 3 },{ name: "Latte", quantity: 5 },{ name: "Ristretto", quantity: 4 }]);
 
 // Task 4
 // Create a Function to Calculate Total for an Order
 function calculateOrderTotal (order) {
     return order.items.reduce((sum, coffee) => {
-        const product = inventory.find(prod => prod.name === coffee.productName); // Const for finding coffee name in inventory array
+        const product = inventory.find(prod => prod.name === coffee.name); // Const for finding coffee name in inventory array
         return product ? sum + product.price * coffee.quantity : sum; // Const for finding coffee name in inventory array
     }, 0);
 }
 
 // Calculate order total
-const total = calculateOrderTotal(orders);
-console.log(`Total for ${orders.customerName}: $${total}`); // Logs name of customer with order and total value of bill to be paid
+const lastOrder = orders[orders.length - 1];
+const total = calculateOrderTotal(lastOrder);
+console.log(`Total for ${lastOrder.customerName}: $${total}`); // Logs name of customer with order and total value of bill to be paid
+
+// Task 5
+// Create a Function to Mark an Order as Completed
+function completeOrder(customerName){
+        const orders = inventory.find(ord => ord.customerName === customerName);
+        if(!orders){
+            console.error(`${customerName}'s order was not found.`);
+        }else{
+            console.log(`${customerName}'s order is complete.`)
+            order.status="Complete"
+        }
+    }
+    completeOrder('Carl Maverick');
+    completeOrder('Connor Manly');
+
+// Task 6
+// Create a Function to Mark an Order as Completed
